@@ -1,37 +1,39 @@
-# IBEX 35 Data Pipeline 📈
+# IBEX 35 Data Pipeline 
 
-Un script en Python que automatiza la extracción de datos financieros de las empresas del IBEX 35 (usando Yahoo Finance) y los envía directamente a Google Sheets mediante su API oficial. 
+A Python script that automates the extraction of financial data from IBEX 35 companies (using Yahoo Finance) and sends it directly to Google Sheets via its official API.
 
-Ideal para usar como fuente de datos en directo para dashboards de **Looker Studio** o PowerBI.
+Ideal for use as a live data source for **Looker Studio** or Power BI dashboards.
 
-## ¿Qué hace el script?
-1. **Descarga en tiempo real** los precios de las 35 empresas del IBEX español.
-2. **Extrae la fecha técnica (Metadata)**: Sector, Industria, País, P/E Ratio, Dividend Yield, etc.
-3. **Calcula métricas clave**: Variación Diaria/Semanal/Mensual, Volatilidad anualizada y distancias a los máximos/mínimos de 52 semanas.
-4. **Sincroniza con la Nube**: Borra los datos antiguos y escribe la tabla actualizada en un Google Sheet a través de una Cuenta de Servicio (Service Account) de Google Cloud.
+## What does the script do?
 
-## Requisitos Previos (Instalación)
+1. **Downloads in real-time** the prices of the 35 companies in the Spanish IBEX index.
+2. **Extracts technical metadata**: Sector, Industry, Country, P/E Ratio, Dividend Yield, etc.
+3. **Calculates key metrics**: Daily/Weekly/Monthly variation, annualized volatility, and distances to 52-week highs/lows.
+4. **Syncs with the Cloud**: Clears old data and writes the updated table to a Google Sheet through a Google Cloud Service Account.
 
-Asegúrate de tener instalado Python y luego instala las librerías necesarias ejecutando:
+## Prerequisites (Installation)
+
+Make sure you have Python installed, then install the required libraries by running:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Configuración de Google Sheets (Service Account)
+## Google Sheets Configuration (Service Account)
 
-Para que el script tenga permisos de editar tu hoja de Google Sheets, necesitas:
-1. Crear un proyecto en [Google Cloud Console](https://console.cloud.google.com/) y activar la **Google Sheets API** y **Google Drive API**.
-2. Crear una **Service Account** y generar una clave privada en formato JSON.
-3. Descargar ese archivo, renombrarlo a `credentials.json` y guardarlo en la misma carpeta que este script.
-4. Copiar el `client_email` que hay dentro de ese JSON, ir a tu Google Sheet en el navegador y **darle permisos de Editor** a ese email.
-5. Pegar la URL de tu Google Sheet al final del archivo `ibex_scraper.py`.
+For the script to have permission to edit your Google Sheet, you need to:
 
-> **⚠️ ADVERTENCIA DE SEGURIDAD**: Nunca subas tu archivo `credentials.json` a repositorios públicos como GitHub. El archivo `.gitignore` incluido en este proyecto ya está configurado para ignorarlo automáticamente.
+1. Create a project in [Google Cloud Console](https://console.cloud.google.com/) and enable the **Google Sheets API** and **Google Drive API**.
+2. Create a **Service Account** and generate a private key in JSON format.
+3. Download that file, rename it to `credentials.json`, and save it in the same folder as this script.
+4. Copy the `client_email` from inside that JSON, go to your Google Sheet in the browser, and **grant Editor permissions** to that email.
+5. Paste your Google Sheet URL at the end of the `ibex_scraper.py` file.
 
-## Uso
+> **⚠️ SECURITY WARNING**: Never upload your `credentials.json` file to public repositories like GitHub. The `.gitignore` file included in this project is already configured to automatically ignore it.
 
-Simplemente ejecuta el script en tu terminal. Tardará entre 1 y 2 minutos en recabar toda la información de Yahoo Finance y la subirá automáticamente.
+## Usage
+
+Simply run the script in your terminal. It will take between 1 and 2 minutes to gather all the information from Yahoo Finance and upload it automatically.
 
 ```bash
 python ibex_scraper.py
