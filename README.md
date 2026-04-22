@@ -2,12 +2,15 @@
 
 An end-to-end data pipeline that extracts real-time financial data from all 35 companies in the Spanish IBEX index, stores it in the cloud, and visualizes it through an interactive live dashboard.
 
+This project was built as a hands-on learning exercise to explore **Looker Studio** for data visualization and **MongoDB Atlas** for cloud-based historical storage — using a real-world financial dataset as the foundation.
+
 ## What it does
 
 1. **Extracts** real-time prices and technical metadata from Yahoo Finance (Sector, P/E Ratio, Dividend Yield, volatility, 52-week highs/lows, and more)
 2. **Calculates** key performance metrics: daily, weekly, and monthly variation, annualized volatility, and position within annual range
 3. **Syncs** the processed data to Google Sheets via a Google Cloud Service Account
 4. **Visualizes** everything in a live Looker Studio dashboard with interactive filters by sector, volatility, and performance
+5. **Stores** daily snapshots in MongoDB Atlas to enable historical querying and trend analysis over time
 
 ## Live Dashboard
 
@@ -22,6 +25,7 @@ An end-to-end data pipeline that extracts real-time financial data from all 35 c
 - **pandas** — data processing
 - **gspread + Google Cloud** — Google Sheets sync via Service Account
 - **Looker Studio** — live dashboard and visualization
+- **MongoDB Atlas + pymongo** — cloud database for historical snapshot storage
 
 ## Setup
 
@@ -41,17 +45,21 @@ pip install -r requirements.txt
 
 > **⚠️ Security**: Never upload `credentials.json` to public repositories. The `.gitignore` in this project is already configured to ignore it.
 
+### MongoDB Configuration
+
+The pipeline notebook (`mongo_pipeline.ipynb`) connects to MongoDB Atlas via a connection string stored as a **Colab Secret** (`MONGO_URI`). Never hardcode credentials in the notebook.
+
 ## Usage
 
 ```bash
 python ibex_scraper.py
 ```
 
-The script takes 1–2 minutes to pull data from all 35 companies and sync to Google Sheets.
+The script takes 1–2 minutes to pull data from all 35 companies and sync to Google Sheets. For MongoDB ingestion and historical analysis, run `mongo_pipeline.ipynb` in Google Colab.
 
 ## Roadmap
 
 - [x] Yahoo Finance data extraction
-- [x] Google Sheets sync via Service Account  
+- [x] Google Sheets sync via Service Account
 - [x] Looker Studio live dashboard
-- [ ] MongoDB Atlas integration for historical storage and querying
+- [x] MongoDB Atlas integration for historical storage and querying
