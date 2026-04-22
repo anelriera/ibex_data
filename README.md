@@ -14,7 +14,7 @@ This project was built as a hands-on learning exercise to explore **Looker Studi
 
 ## Live Dashboard
 
-👉 [View the dashboard](https://datastudio.google.com/reporting/b771d15f-10c1-4c50-8141-41bd5352a9a1)
+👉 [View the dashboard](https://datastudio.google.com/reporting/d8b9cb06-6d64-4cc4-b0ec-228cb6860205)
 
 <img width="1031" height="772" alt="image" src="https://github.com/user-attachments/assets/60f2d571-f8f3-486f-a512-ae17934ef32c" />
 
